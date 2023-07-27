@@ -11,7 +11,7 @@ Backup.py provides the following features:
 ## Install
 
 Backup.py uses rsync:
-```bash
+```
 apt install rsync
 ```
 
@@ -48,24 +48,24 @@ List all available profiles:
 backup.py
 ```
 
-Start test run for profile "mydata":
+Start test run for profile "home2nas":
 ```
-backup.py -n --delete mydata
-```
-
-Start backup of profile named "mydata" and delete files in target directory:
-```
-backup.py --delete mydata
+backup.py -n --delete home2nas
 ```
 
-Start backup of profile named "mydata" and "opt". Do not delete files in target directory:
+Start backup of profile named "home2nas" and delete files in target directory:
 ```
-backup.py mydata opt
+backup.py --delete home2nas
 ```
 
-Use alisas to make backup even more easier: ????????????
+Start backup of profile named "home2nas" and "opt2nas". Do not delete files in target directory:
 ```
-alias backup.all.try='backup.py -n --delete mydata opt'
-alias backup.all.run='backup.py --delete mydata opt'
+backup.py home2nas opt2nas
+```
+
+Use alisas to make backup even more easier: 
+```
+alias backup.homeopt2nas.try='backup.py -n --delete home2nas opt2nas'
+alias backup.homeopt2nas.run='backup.py --delete home2nas opt2nas'
 ```
 

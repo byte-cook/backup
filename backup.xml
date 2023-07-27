@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<backup-profiles>
+	<backup-profile>
+		<name>home2nas</name>
+		<description>Backup /home/user</description>
+		<source>/home/user/</source>
+		<target>/mnt/nas/user/desktop-home</target>
+		<mode>synchronize</mode>
+		<option>-rltvzi</option>
+		<!-- .thumbnails: gnome thumbnails -->
+		<option>--exclude=/.thumbnails/</option>
+		<!-- .cache: cache data of applications -->
+		<option>--exclude=/.cache/</option>
+		<!-- Skip symlinks -->
+		<option>--no-links</option> 
+		<count></count>
+	</backup-profile>
+</backup-profiles>

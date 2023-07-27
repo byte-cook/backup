@@ -20,8 +20,6 @@ apt install rsync
 Define your backup profile in the definition file "backup.xml". By default this file is searched in the same folder as backup.py.
 
 The XML structure is as follows:
-
-??????????????????????
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <backup-profiles>

@@ -2,10 +2,10 @@
 <backup-profiles>
 	<backup-profile>
 		<name>home2nas</name>
-		<description>Backup /home/user</description>
-		<source>/home/user/</source>
-		<target>/mnt/nas/user/desktop-home</target>
-		<mode>synchronize</mode>
+		<description>home directory to NAS</description>
+		<source>/home/user</source>
+		<target>/mnt/nas/user/backup-home</target>
+		<mode>incremental</mode>
 		<option>-rltvzi</option>
 		<!-- .thumbnails: gnome thumbnails -->
 		<option>--exclude=/.thumbnails/</option>
@@ -13,6 +13,14 @@
 		<option>--exclude=/.cache/</option>
 		<!-- Skip symlinks -->
 		<option>--no-links</option> 
-		<count></count>
+		<!-- add more rsync options here -->
+		<count>2</count>
+	</backup-profile>
+	<backup-profile>
+		<name>opt2nas</name>
+		<description>/opt to NAS</description>
+		<source>/opt</source>
+		<target>/mnt/nas/user/backup-opt</target>
+		<mode>synchronize</mode>
 	</backup-profile>
 </backup-profiles>

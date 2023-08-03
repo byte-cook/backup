@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<backup-profiles>
+    <!-- ####################### -->
+	<!-- Backup profile -->
+    <!-- ####################### -->
+	<backup-profile>
+		<name>p1</name>
+		<description>First backup profile</description>
+		<source>test/root/src-1</source>
+		<target>test/root/dst-1</target>
+		<mode>increment</mode>
+		<count></count>
+	</backup-profile>
+	<backup-profile>
+		<name>p1</name>
+		<target>test/target1</target>
+	</backup-profile>
+	<backup-profile>
+	</backup-profile>
+</backup-profiles>

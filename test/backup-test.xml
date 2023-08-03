@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<backup-profiles>
+	<backup-profile>
+		<name>sync</name>
+		<description>SYNC backup profile</description>
+		<source>root/src-1</source>
+		<target>root/dst-1</target>
+		<mode>synchronize</mode>
+	</backup-profile>
+	<backup-profile>
+		<name>incr</name>
+		<description>INCR backup profile</description>
+		<source>root/src-1</source>
+		<target>root/dst-1</target>
+		<mode>incremental</mode>
+		<option>-rltvzi</option>
+		<count>2</count>
+	</backup-profile>
+</backup-profiles>

@@ -8,6 +8,16 @@
 		<mode>synchronize</mode>
 	</backup-profile>
 	<backup-profile>
+		<name>sync-exclude</name>
+		<description>SYNC backup profile with exclude</description>
+		<source>root/src-1</source>
+		<target>root/dst-1</target>
+		<mode>synchronize</mode>
+		<option>-a</option>
+		<option>--exclude=/exclude-folder/</option> 
+		<option>--exclude=/file-1.txt</option>
+	</backup-profile>
+	<backup-profile>
 		<name>incr</name>
 		<description>INCR backup profile</description>
 		<source>root/src-1</source>

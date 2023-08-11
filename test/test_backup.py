@@ -18,6 +18,7 @@ DST_1_DIR = os.path.join(ROOT_DIR, 'dst-1')
 TEST_XML = os.path.join(PROJECT_DIR, 'backup-test.xml')
 TEST_ERROR_XML = os.path.join(PROJECT_DIR, 'backup-test-error.xml')
 PROFILE_SYNC = 'sync'
+PROFILE_SYNC_EXCLUDE = 'sync-exclude'
 PROFILE_INCR = 'incr'
 
 # Usage:
@@ -66,25 +67,17 @@ class TestBackup(unittest.TestCase):
         self._createFiles(SRC_1_DIR, 5)
         backup.main(['--debug', '--file', TEST_XML, PROFILE_SYNC])
         self.assertEqual(len(os.listdir(DST_1_DIR)), 5)
-#    def test_sync_exclude(self):
-#        print('======= test_sync_exclude ===')
-#        self._createFiles(SRC_1_DIR, 5)
-#        backup.main(['--debug', '--file', TEST_XML, '--exclude', 'file-1.txt', PROFILE_SYNC])
-#        self.assertEqual(len(os.listdir(DST_1_DIR)), 4)
+    def test_sync_exclude(self):
+        print('======= test_sync_exclude ===')
+        self._createFiles(SRC_1_DIR, 5)
+        backup.main(['--debug', '--file', TEST_XML, PROFILE_SYNC_EXCLUDE])
+        self.assertEqual(len(os.listdir(DST_1_DIR)), 4)
     def test_sync_delete(self):
         print('======= test_sync_delete ===')
         self._createFiles(SRC_1_DIR, 5)
         self._createFiles(DST_1_DIR, 7, 'deleteme')
         backup.main(['--debug', '--file', TEST_XML, '--delete', PROFILE_SYNC])
         self.assertEqual(len(os.listdir(DST_1_DIR)), 5)
-#    def test_sync_delete_exclude(self):
-#        print('======= test_sync_delete_exclude ===')
-#        self._createFiles(SRC_1_DIR, 5)
-#        self._createFiles(DST_1_DIR, 7, 'dst')
-#        backup.main(['--debug', '--file', TEST_XML, '--exclude', 'file-1.txt', '--exclude', 'dst-1.txt', '--delete', PROFILE_SYNC])
-#        self.assertEqual(len(os.listdir(DST_1_DIR)), 5)
-#        self.assertTrue(os.path.exists(os.path.join(DST_1_DIR, 'dst-1.txt')))
-#        self.assertFalse(os.path.exists(os.path.join(DST_1_DIR, 'file-1.txt')))
     
     def test_incr(self):
         print('======= test_incr ===')
@@ -110,7 +103,6 @@ class TestBackup(unittest.TestCase):
         TARGET_FOLDER = os.path.join(DST_1_DIR, datetime.datetime.now().strftime("%Y-%m-%d"))
         self.assertFalse(os.path.exists(TARGET_FOLDER), msg=f'{TARGET_FOLDER}')
     def test_incr_folders(self):
-#### test again        
         print('======= test_incr_folders ===')
         self._createFiles(SRC_1_DIR, 5)
         folder2000 = os.path.join(DST_1_DIR, '2000-03-12')
@@ -133,23 +125,6 @@ class TestBackup(unittest.TestCase):
         backup.main(['--debug', '-v', '--file', TEST_XML, PROFILE_INCR])
         self.assertFalse(os.path.exists(folder2010), msg=f'{folder2010}')
         self.assertEqual(len(os.listdir(DST_1_DIR)), 2)
-#    def test_incr_exclude(self):
-#        print('======= test_incr_exclude ===')
-#        self._createFiles(SRC_1_DIR, 5)
-#        folder2000 = os.path.join(DST_1_DIR, '2000-03-12')
-#        folder2010 = os.path.join(DST_1_DIR, '2010-03-12')
-#        os.makedirs(folder2000, exist_ok=True)
-#        os.makedirs(folder2010, exist_ok=True)
-#        TARGET_FOLDER = os.path.join(DST_1_DIR, datetime.datetime.now().strftime("%Y-%m-%d"))
-#        self._createFiles(TARGET_FOLDER, 5, 'exclude')
-#        backup.main(['--debug', '--file', TEST_XML, '--exclude', 'exclude-1.txt', PROFILE_INCR])
-#        self.assertFalse(os.path.exists(folder2000), msg=f'{folder2000}')
-#        self.assertTrue(os.path.exists(folder2010), msg=f'{folder2010}')
-#        self.assertTrue(os.path.exists(TARGET_FOLDER), msg=f'{TARGET_FOLDER}')
-#        self.assertEqual(len(os.listdir(DST_1_DIR)), 2)
-#        self.assertEqual(len(os.listdir(TARGET_FOLDER)), 6)
-#        self.assertTrue(os.path.exists(os.path.join(TARGET_FOLDER, 'exclude-1.txt')))
-#        self.assertFalse(os.path.exists(os.path.join(TARGET_FOLDER, 'exclude-2.txt')))
 
     @mock.patch('backup.input', create=True)
     def test_restore_sync(self, mocked_input):

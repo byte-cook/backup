@@ -19,12 +19,17 @@ sudo apt install python3.6
 sudo apt install rsync
 ```
 
-2. Download Backup.py and set execute permissions:
+3. Download Backup.py and set execute permissions:
 ```
 curl -LJO https://raw.githubusercontent.com/byte-cook/backup/main/backup.py
 curl -LJO https://raw.githubusercontent.com/byte-cook/backup/main/osutil.py
 curl -LJO https://raw.githubusercontent.com/byte-cook/backup/main/xmlutil.py
 chmod +x backup.py 
+```
+
+4. (Optional) Use opt.py to install it to the /opt directory:
+```
+sudo opt.py install backup backup.py osutil.py xmlutil.py
 ```
 
 ## Profile definiton
